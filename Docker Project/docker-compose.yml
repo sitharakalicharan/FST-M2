@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_DB=simple_blog_api
+  api:
+    depends_on:
+      - postgres
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    image: sithark4/simpleblog_api
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_DB=simple_blog_api
+    ports:
+      - "3000:3000"
