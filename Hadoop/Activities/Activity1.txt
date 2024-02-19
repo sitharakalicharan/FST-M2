@@ -1,0 +1,50 @@
+-rw-r--r--   1 root supergroup       3321 2021-08-23 10:44 /user/root/input/hadoop-metrics2.properties
+-rw-r--r--   1 root supergroup      11765 2021-08-23 10:44 /user/root/input/hadoop-policy.xml
+-rw-r--r--   1 root supergroup       3414 2021-08-23 10:44 /user/root/input/hadoop-user-functions.sh.example
+-rw-r--r--   1 root supergroup        683 2021-08-23 10:44 /user/root/input/hdfs-rbf-site.xml
+-rw-r--r--   1 root supergroup        354 2021-08-23 10:44 /user/root/input/hdfs-site.xml
+-rw-r--r--   1 root supergroup       1484 2021-08-23 10:44 /user/root/input/httpfs-env.sh
+-rw-r--r--   1 root supergroup       1657 2021-08-23 10:44 /user/root/input/httpfs-log4j.properties
+-rw-r--r--   1 root supergroup        620 2021-08-23 10:44 /user/root/input/httpfs-site.xml
+-rw-r--r--   1 root supergroup       3518 2021-08-23 10:44 /user/root/input/kms-acls.xml
+-rw-r--r--   1 root supergroup       1351 2021-08-23 10:44 /user/root/input/kms-env.sh
+-rw-r--r--   1 root supergroup       1860 2021-08-23 10:44 /user/root/input/kms-log4j.properties
+-rw-r--r--   1 root supergroup        682 2021-08-23 10:44 /user/root/input/kms-site.xml
+-rw-r--r--   1 root supergroup      13700 2021-08-23 10:44 /user/root/input/log4j.properties
+-rw-r--r--   1 root supergroup        951 2021-08-23 10:44 /user/root/input/mapred-env.cmd
+-rw-r--r--   1 root supergroup       1764 2021-08-23 10:44 /user/root/input/mapred-env.sh
+-rw-r--r--   1 root supergroup       4113 2021-08-23 10:44 /user/root/input/mapred-queues.xml.template
+-rw-r--r--   1 root supergroup        138 2021-08-23 10:44 /user/root/input/mapred-site.xml
+drwxr-xr-x   - root supergroup          0 2021-08-23 10:44 /user/root/input/shellprofile.d
+-rw-r--r--   1 root supergroup       3880 2021-08-23 10:44 /user/root/input/shellprofile.d/example.sh
+-rw-r--r--   1 root supergroup       2316 2021-08-23 10:44 /user/root/input/ssl-client.xml.example
+-rw-r--r--   1 root supergroup       2697 2021-08-23 10:44 /user/root/input/ssl-server.xml.example
+-rw-r--r--   1 root supergroup       2681 2021-08-23 10:44 /user/root/input/user_ec_policies.xml.template
+-rw-r--r--   1 root supergroup         10 2021-08-23 10:44 /user/root/input/workers
+-rw-r--r--   1 root supergroup       2250 2021-08-23 10:44 /user/root/input/yarn-env.cmd
+-rw-r--r--   1 root supergroup       6329 2021-08-23 10:44 /user/root/input/yarn-env.sh
+-rw-r--r--   1 root supergroup       1525 2021-08-23 10:44 /user/root/input/yarn-site.xml
+-rw-r--r--   1 root supergroup       2591 2021-08-23 10:44 /user/root/input/yarnservice-log4j.properties
+drwxr-xr-x   - root supergroup          0 2024-02-16 14:52 /user/sithara
+-rw-r--r--   1 root supergroup         55 2024-02-16 14:52 /user/sithara/input.txt
+root@3a11a8e6b8c4:~# clear
+root@3a11a8e6b8c4:~# hdfs dfs -ls /user/sithara
+Found 1 items
+-rw-r--r--   1 root supergroup         55 2024-02-16 14:52 /user/sithara/input.txt
+root@3a11a8e6b8c4:~# hdfs dfs -cat /user/sithara/input.txt
+Hello this is from me
+From the other side of the world
+root@3a11a8e6b8c4:~# vim txtFile.txt
+root@3a11a8e6b8c4:~# vim csvFile.csv
+root@3a11a8e6b8c4:~# ls
+csvFile.csv  input.txt  txtFile.txt
+root@3a11a8e6b8c4:~# hdfs dfs -mkdir /user/sithara/textData
+root@3a11a8e6b8c4:~# hdfs dfs -put /user/sithara/txtFile.txt /user/sithara/testData
+put: `/user/sithara/txtFile.txt': No such file or directory
+root@3a11a8e6b8c4:~# hdfs dfs -put txtFile.txt /user/sithara/textData
+root@3a11a8e6b8c4:~# hdfs dfs -put csvFile.csv /user/sithara/textData
+root@3a11a8e6b8c4:~# hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /user/sithara/textData/csvFile.csv
+type:regular file permissions:644 root:supergroup size:527 name:csvFile.csv
+root@3a11a8e6b8c4:~# hdfs dfs -stat "type:%F permissions:%a %u:%g size:%b name:%n" /user/sithara/textData/txtFile.txt
+type:regular file permissions:644 root:supergroup size:158 name:txtFile.txt
+root@3a11a8e6b8c4:~#
