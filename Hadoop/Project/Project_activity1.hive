@@ -1,0 +1,19 @@
+--Drop tables
+DROP TABLE episodes;
+DROP TABLE episodeIV;
+
+--Create the table
+CREATE TABLE episodes (name STRING, line STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' TBLPROPERTIES ("skip.header.line.count" = "2");
+
+--Load all 3 text files into the table
+LOAD DATA LOCAL INPATH '/root/inputs/episodeIV_dialogues.txt' INTO TABLE episodes;
+LOAD DATA LOCAL INPATH '/root/inputs/episodeV_dialogues.txt' INTO TABLE episodes;
+LOAD DATA LOCAL INPATH '/root/inputs/episodeVI_dialogues.txt' INTO TABLE episodes;
+
+--generate output and export into
+INSERT OVERWRITE LOCAL DIRECTORY '/root/HiveOutput1' ROW FORMAT DELIMITED FIELDS TERMINATED FIELDS TERMINATED BY '\t'
+SELECT name, COUNT(name) AS no_of_lines from episodes GROUP BY name ORDER BY no_of_lines DESC;
+
+
+
